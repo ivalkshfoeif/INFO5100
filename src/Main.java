@@ -9,5 +9,7 @@ class Main {
         weightGrades.setPercentage(percentages);
         weightGrades.setTotalPoint(grades);
         weightGrades.calculateTotalWeightedGrade();
+
+        weightGrades.start();
     }
 }

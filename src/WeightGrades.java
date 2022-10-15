@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class WeightGrades {
 
     private Double[] totalPoints;
@@ -92,11 +94,6 @@ public class WeightGrades {
             System.out.println("Missing Input");
             return null;
         }
-        // check the input is valid
-        if (totalPoints.length != 8 && totalPoints.length != percentages.length){
-            System.out.println("Invalid Input");
-            return null;
-        }
         // iterate through the input array
         for (int i = 0; i < totalPoints.length; i++){
             totalWeightedGrade += (earnedPoints[i] / totalPoints[i]) * percentages[i];
@@ -120,5 +117,63 @@ public class WeightGrades {
         System.out.println("The total grade is: " + totalWeightedGrade + ". The letter grade is: " + letterGrade);
         return totalWeightedGrade;
 
+    }
+    // code for lab4
+    public void start(){
+        Scanner scanner = new Scanner(System.in);
+        // accept input of assignment number
+        System.out.println("Please enter the assignment number");
+        int N = Integer.parseInt(scanner.nextLine());
+        int i = N;
+        // resize the arrays
+        totalPoints = new Double[N];
+        earnedPoints = new Double[N];
+        percentages = new Double[N];
+        // fill total point
+        while (i > 0){
+            System.out.println("Please enter " + i + " total point");
+            totalPoints[i - 1] = Double.valueOf(scanner.nextLine());
+            i--;
+        }
+        System.out.println(generatString(totalPoints, "total point"));
+        i = N;
+        // fill earned point
+        while (i > 0){
+            System.out.println("Please enter " + i + " earned point");
+            earnedPoints[i - 1] = Double.valueOf(scanner.nextLine());
+            i--;
+        }
+        System.out.println(generatString(earnedPoints, "earned point"));
+        boolean isValid = false;
+        // fill percentage, if the input percentage is not valid(sum to 100), ask user to do it again
+        while(!isValid){
+            i = N;
+            while(i > 0){
+                System.out.println("Please enter " + i + " percentage");
+                percentages[i - 1] = Double.valueOf(scanner.nextLine());
+                i--;
+            }
+            Double total = 0D;
+            for (Double p : percentages){
+                total += p;
+            }
+            if (total == 100D) {
+                isValid = true;
+            }else {
+                System.out.println("InValid percentage input, please try again, the sum of percentage must be 100");
+            }
+        }
+        // print the final score
+        this.calculateTotalWeightedGrade();
+    }
+
+    public String generatString(Double[] arr, String name){
+        StringBuilder sb = new StringBuilder("The input "+ name +" are: [");
+        for (int j = arr.length - 1; j >= 0; j--){
+            sb.append(arr[j] + ",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        return sb.toString();
     }
 }

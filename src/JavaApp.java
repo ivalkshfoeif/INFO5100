@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 class JavaApp extends JFrame{
 
     private JTextField totalAssignmentPoints;

@@ -26,7 +26,6 @@ class JavaApp extends JFrame{
         setTitle("lab7");
         setLayout(new GridLayout(1,2,10,5));
         setJPanelOne();
-        //setButton();
         setJPanelTwo();
         setSize(700,350);
         setVisible(true);
